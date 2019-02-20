@@ -1,0 +1,14 @@
+.xs_build_panel_bg{
+       background-size:cover;
+}
+.xs_build_panel_link {
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #ffb342;
+    border: 2px solid black;
+}
