@@ -150,7 +150,8 @@ class xs_build_plugin
                                 if(!empty($a['height']))
                                         $style .= 'height:'.$a['height'].';';
                                         
-                                echo '<div class="xs_build_panel_bg" style="'.$style.'">';
+                                if(!empty($a['image']))
+                                        echo '<div class="xs_build_panel_bg" style="'.$style.'">';
                                         
                                 echo '<div class="xs_build_panel_content">';
                                 
