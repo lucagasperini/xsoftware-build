@@ -129,6 +129,8 @@ class xs_build_plugin
                                 'image' => '',
                                 'image2' => '',
                                 'image3' => '',
+                                'height' => 0,
+                                'width' => 0,
                         ], 
                         $a 
                 );
@@ -140,8 +142,15 @@ class xs_build_plugin
                 switch($a['type'])
                 {
                         case 'panel':
+                                $style = '';
                                 if(!empty($a['image']))
-                                        echo '<div class="xs_build_panel_bg" style="background-image:url(\''.$a['image'].'\');">';
+                                        $style .= 'background-image:url(\''.$a['image'].'\');';
+                                if(!empty($a['width']))
+                                        $style .= 'width:'.$a['width'].';';
+                                if(!empty($a['height']))
+                                        $style .= 'height:'.$a['height'].';';
+                                        
+                                echo '<div class="xs_build_panel_bg" style="'.$style.'">';
                                         
                                 echo '<div class="xs_build_panel_content">';
                                 
