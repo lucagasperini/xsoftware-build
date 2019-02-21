@@ -51,6 +51,9 @@ if(!function_exists('xsb_slideshow')) :
                         ], 
                         $attr 
                 );
+                
+                $style = '';
+                
                 if(!empty($a['width']))
                         $style .= 'width:'.$a['width'].';';
                 if(!empty($a['height']))
