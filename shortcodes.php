@@ -65,7 +65,7 @@ if(!function_exists('xsb_slideshow')) :
                 else
                         echo "<script> var xs_build_image_slide_time = 4000;</script>";
                                         
-                echo '<div class="xs_build_slideshow">'.$c.'</div>';
+                echo '<div class="xs_build_slideshow" style="'.$style.'">'.$c.'</div>';
                         
                 return;
         }
