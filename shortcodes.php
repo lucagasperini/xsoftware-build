@@ -47,12 +47,23 @@ if(!function_exists('xsb_slideshow')) :
                         [
                                 'height' => 0,
                                 'width' => 0,
+                                'time' => 0
                         ], 
                         $attr 
                 );
+                if(!empty($a['width']))
+                        $style .= 'width:'.$a['width'].';';
+                if(!empty($a['height']))
+                        $style .= 'height:'.$a['height'].';';
                 
+                xs_framework::init_admin_script();
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
                 wp_enqueue_script('xs_build_script', plugins_url('js/panel.js', __FILE__));
+                
+                if(!empty($a['time']))
+                        echo "<script> var xs_build_image_slide_time = ".json_encode($a['time']).";</script>";
+                else
+                        echo "<script> var xs_build_image_slide_time = 4000;</script>";
                                         
                 echo '<div class="xs_build_slideshow">'.$c.'</div>';
                         
