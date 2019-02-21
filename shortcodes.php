@@ -64,10 +64,10 @@ if(!function_exists('xsb_slideshow')) :
                 wp_enqueue_script('xs_build_script', plugins_url('js/panel.js', __FILE__));
                 
                 if(!empty($a['time']))
-                        echo "<script> var xs_build_image_slide_time = ".json_encode($a['time']).";</script>";
+                        echo '<script>var xs_build_image_slide_time='.json_encode($a['time']).';</script>';
                 else
-                        echo "<script> var xs_build_image_slide_time = 4000;</script>";
-                                        
+                        echo '<script>var xs_build_image_slide_time=4000;</script>';
+
                 echo '<div class="xs_build_slideshow" style="'.$style.'">'.$c.'</div>';
                         
                 return;
