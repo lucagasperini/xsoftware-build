@@ -49,8 +49,8 @@ class xs_build_plugin
         {
                 add_action('admin_menu', array($this, 'admin_menu'));
                 add_action('admin_init', array($this, 'section_menu'));
-                
-                add_shortcode( 'xs_build', array($this, 'shortcode') );
+               
+                include 'shortcodes.php';
                
                 $this->options = get_option('xs_options_build', $this->default);
         }
@@ -114,63 +114,7 @@ class xs_build_plugin
                 
                 return $current;
         }
-        
-        function shortcode($a)
-        {
-                $a = shortcode_atts( 
-                        [
-                                'type' => '', 
-                                'text' => '', 
-                                'text2' => '',
-                                'text3' => '',
-                                'link' => '', 
-                                'link2' => '',
-                                'link3' => '',
-                                'image' => '',
-                                'image2' => '',
-                                'image3' => '',
-                                'height' => 0,
-                                'width' => 0,
-                        ], 
-                        $a 
-                );
-              
-                if(empty($a['type'])) return;
-                
-                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
-                
-                switch($a['type'])
-                {
-                        case 'panel':
-                                $style = '';
-                                if(!empty($a['image']))
-                                        $style .= 'background-image:url(\''.$a['image'].'\');';
-                                if(!empty($a['width']))
-                                        $style .= 'width:'.$a['width'].';';
-                                if(!empty($a['height']))
-                                        $style .= 'height:'.$a['height'].';';
-                                        
-                                if(!empty($a['image']))
-                                        echo '<div class="xs_build_panel_bg" style="'.$style.'">';
-                                        
-                                echo '<div class="xs_build_panel_content">';
-                                
-                                if(!empty($a['text']))
-                                        echo '<h1>'.$a['text'].'</h1>';
-                                        
-                                if(!empty($a['text2']))
-                                        echo '<h3>'.$a['text2'].'</h3>';
-                                
-                                if(!empty($a['link']) && !empty($a['text3']))
-                                        echo '<a class="xs_build_panel_link xs_button" href="'.$a['link'].'">'.$a['text3'].'</a>';
-                                        
-                                echo '</div>';
-                                
-                                if(!empty($a['image']))
-                                        echo '</div>';
-                                return;
-                }
-        }
+       
 
 }
 
