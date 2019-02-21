@@ -55,9 +55,6 @@ if(!function_exists('xsb_slideshow')) :
                 wp_enqueue_script('xs_build_script', plugins_url('js/panel.js', __FILE__));
                                         
                 echo '<div class="xs_build_slideshow">'.$c.'</div>';
-                                
-                if(!empty($a['image']))
-                        echo '</div>';
                         
                 return;
         }
