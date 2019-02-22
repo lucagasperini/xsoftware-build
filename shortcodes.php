@@ -74,5 +74,46 @@ if(!function_exists('xsb_slideshow')) :
         }
         
 endif;
+
+if(!function_exists('xsb_fa')) :
+        
+        add_shortcode( 'xsb_fa', 'xsb_fa');
+
+        function xsb_fa($attr, $c = null)
+        {
+                $a = shortcode_atts( 
+                        [
+                                'icon' => '',
+                                'type' => 'fas',
+                                'style' => '',
+                                'class' => ''
+                        ], 
+                        $attr 
+                );
+                
+                if(empty($a['icon'])) return;
+               
+                wp_enqueue_style('xs_build_fontawesome_style', plugins_url('style/fontawesome/css/all.min.css', __FILE__));
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                
+                if(!empty($a['class']))
+                        echo '<span class="'.$a['class'].'">';
+                
+                if(!empty($a['style']))
+                        echo '<span style="'.$a['style'].'">';
+                
+                echo '<i class="'.$a['type'].' fa-'.$a['icon'].'">'.$c.'</i>';
+                
+                if(!empty($a['style']))
+                        echo '</span>';
+                        
+                if(!empty($a['class']))
+                        echo '</span>';
+                        
+                return;
+        }
+        
+endif;
+
  
 ?>
