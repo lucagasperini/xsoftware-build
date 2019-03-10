@@ -15,3 +15,37 @@
 .xsb_image_slide {
         display:none;
 }
+
+.xs_build_carousel {
+        display: -webkit-flexbox;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        justify-content: center;
+}
+
+.xs_build_carousel_content {
+        min-width:100%;
+        display:contents;
+}
+
+.xsb_carousel_item {
+        float:left;
+        display:contents;
+}
+
+.xsb_carousel_item > * {
+        max-height:100%;
+        max-width:100%;
+}
+
+.xs_build_carousel_control {
+        cursor: pointer;
+        text-align:center;
+        padding: 32px;
+        font-size: 32px;
+}

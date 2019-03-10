@@ -77,6 +77,52 @@ if(!function_exists('xsb_slideshow')) :
         
 endif;
 
+if(!function_exists('xsb_carousel')) :
+        
+        add_shortcode( 'xsb_carousel', 'xsb_carousel');
+
+        function xsb_carousel($attr, $c = null)
+        {
+                $a = shortcode_atts( 
+                        [
+                                'height' => 0,
+                                'width' => 0,
+                                'items' => 0
+                        ], 
+                        $attr 
+                );
+                
+                if($c == null) return;
+                
+                $style = '';
+                
+                if(!empty($a['width']))
+                        $style .= 'max-width:'.$a['width'].';';
+                if(!empty($a['height']))
+                        $style .= 'max-height:'.$a['height'].';';
+                        
+                if(!empty($a['items']))
+                        echo '<script>var xs_build_carousel_range='.json_encode($a['items']).';</script>';
+                else
+                        echo '<script>var xs_build_carousel_range=5;</script>';
+               
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                wp_enqueue_script('xs_build_script', plugins_url('js/carousel.js', __FILE__));
+                wp_enqueue_style('xs_build_fontawesome_style', plugins_url('style/fontawesome/css/all.min.css', __FILE__));
+
+                echo '<div class="xs_build_carousel" style="'.$style.'">';
+                echo '<div class="xs_build_carousel_control" style="float:left;" onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
+                echo '<div class="xs_build_carousel_content">';
+                echo $c;
+                echo '</div>';
+                echo '<div class="xs_build_carousel_control" style="float:right;" onclick="xsb_carousel_btn(1);"><i class="fas fa-greater-than"></i></div>';
+                echo '</div>';
+                        
+                return;
+        }
+        
+endif;
+
 if(!function_exists('xsb_fa')) :
         
         add_shortcode( 'xsb_fa', 'xsb_fa');
