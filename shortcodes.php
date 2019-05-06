@@ -108,7 +108,7 @@ if(!function_exists('xsb_carousel')) :
                
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
                 wp_enqueue_script('xs_build_script', plugins_url('js/carousel.js', __FILE__));
-                wp_enqueue_style('xs_build_fontawesome_style', plugins_url('style/fontawesome/css/all.min.css', __FILE__));
+                xs_framework::enqueue_fontawesome();
 
                 echo '<div class="xs_build_carousel" style="'.$style.'">';
                 echo '<div class="xs_build_carousel_control" style="float:left;" onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
