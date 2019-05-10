@@ -112,7 +112,7 @@ if(!function_exists('xsb_carousel')) :
 
                 echo '<div class="xs_build_carousel" style="'.$style.'">';
                 echo '<div class="xs_build_carousel_control" style="float:left;" onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
-                echo '<div class="xs_build_carousel_content">';
+                echo '<div class="xs_build_carousel_content fade">';
                 echo $c;
                 echo '</div>';
                 echo '<div class="xs_build_carousel_control" style="float:right;" onclick="xsb_carousel_btn(1);"><i class="fas fa-greater-than"></i></div>';
