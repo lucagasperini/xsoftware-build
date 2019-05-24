@@ -1,17 +1,22 @@
-.xs_build_panel_bg{
-       background-size:cover;
+.xs_build_panel {
+        position: relative;
+        width: 100%;
 }
-.xs_build_panel_link {
-    padding: 8px 16px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    background-color: #ffb342;
-    border: 2px solid black;
+
+.xs_build_panel_image {
+        display: block;
+        width: 100%;
+        height: auto;
 }
+
+.xs_build_panel_content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+}
+
 .xsb_image_slide {
         display:none;
 }

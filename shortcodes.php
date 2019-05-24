@@ -8,30 +8,20 @@ if(!function_exists('xsb_panel')) :
                 $a = shortcode_atts( 
                         [
                                 'image' => '',
-                                'height' => 0,
-                                'width' => 0,
                         ], 
                         $attr 
                 );
                 
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
-
-                $style = '';
-                if(!empty($a['image']))
-                        $style .= 'background-image:url(\''.$a['image'].'\');';
-                if(!empty($a['width']))
-                        $style .= 'width:'.$a['width'].';';
-                if(!empty($a['height']))
-                        $style .= 'height:'.$a['height'].';';
+                
+                echo '<div class="xs_build_panel">';
                                         
                 if(!empty($a['image']))
-                        echo '<div class="xs_build_panel_bg" style="'.$style.'">';
+                        echo '<img class="xs_build_panel_image" src="'.$a['image'].'">';
                                         
                 echo '<div class="xs_build_panel_content">'.$c.'</div>';
-                                
-                if(!empty($a['image']))
-                        echo '</div>';
-                        
+                
+                echo '</div>';
                 return;
         }
         
