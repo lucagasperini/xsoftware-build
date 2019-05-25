@@ -8,13 +8,14 @@
         width: 100%;
         height: auto;
 }
-
+@media screen and (min-width: 48em) {
 .xs_build_panel_content {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
+}
 }
 
 .xsb_image_slide {
