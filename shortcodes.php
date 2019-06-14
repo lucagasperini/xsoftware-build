@@ -131,7 +131,7 @@ if(!function_exists('xsb_fa')) :
 
                 if(empty($a['icon'])) return;
 
-                wp_enqueue_style('xs_build_fontawesome_style', plugins_url('style/fontawesome/css/all.min.css', __FILE__));
+                xs_framework::enqueue_fontawesome();
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
 
                 if(!empty($a['class']))
