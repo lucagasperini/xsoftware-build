@@ -11,8 +11,18 @@ Text Domain: xsoftware_build
 
 if(!defined("ABSPATH")) die;
 
+/*
+*  XSoftware Build Plugin Class
+*  The following class is used to execute plugin operations
+*  FIXME: Review structure of this plugin
+*/
 class xs_build_plugin
 {
+        /*
+        *  __construct : void
+        *  The class constructor does not require any parameters and
+        *  include shortcode definition file
+        */
         function __construct()
         {
                 include 'shortcodes.php';

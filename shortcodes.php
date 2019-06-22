@@ -3,8 +3,19 @@ if(!function_exists('xsb_panel')) :
 
         add_shortcode( 'xsb_panel', 'xsb_panel');
 
+        /*
+        *  void : xsb_panel : array, string
+        *  This method is used to create the shortcode of panel
+        *  where an image is set as background of a content html
+        *  $attr are the attributes of this shortcode
+        *  $c is the html content of this shortcode default value is null
+        */
         function xsb_panel($attr, $c = null)
         {
+                /*
+                *  Extract the attributes from the array $attr with the following structure:
+                *  'image' is the URL of background image default value is an empty string
+                */
                 $a = shortcode_atts(
                         [
                                 'image' => '',
@@ -12,15 +23,20 @@ if(!function_exists('xsb_panel')) :
                         $attr
                 );
 
+                /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
 
+                /* Create a container for this shortcode */
                 echo '<div class="xs_build_panel">';
 
+                /* If image is not empty print it */
                 if(!empty($a['image']))
                         echo '<img class="xs_build_panel_image" src="'.$a['image'].'">';
 
+                /* Add the content to the panel if is present */
                 echo '<div class="xs_build_panel_content">'.$c.'</div>';
 
+                /* Close the container for this shortcode */
                 echo '</div>';
                 return;
         }
@@ -31,8 +47,22 @@ if(!function_exists('xsb_slideshow')) :
 
         add_shortcode( 'xsb_slideshow', 'xsb_slideshow');
 
+        /*
+        *  void : xsb_slideshow : array, string
+        *  This method is used to create the shortcode of slideshow
+        *  where all images are show with an automatic switch time
+        *  $attr are the attributes of this shortcode
+        *  $c is the html content of this shortcode default value is null
+        */
         function xsb_slideshow($attr, $c = null)
         {
+                /*
+                *  Extract the attributes from the array $attr with the following structure:
+                *  'height' is height property of all images default value is 0
+                *  'width' is width property of all images default value is 0
+                *  'time' is a delta time in ms (second/1000) calculated by the start of image
+                *  number 1 minus the start of image number 2
+                */
                 $a = shortcode_atts(
                         [
                                 'height' => 0,
@@ -42,24 +72,34 @@ if(!function_exists('xsb_slideshow')) :
                         $attr
                 );
 
+                /* Return if content is null (so there are not image to show) */
                 if($c == null) return;
 
+                /* Hardcoded style in html */
                 $style = '';
 
+                /* Get the width property if it's not empty and append in $style */
                 if(!empty($a['width']))
                         $style .= 'width:'.$a['width'].';';
+                /* Get the height property if it's not empty and append in $style */
                 if(!empty($a['height']))
                         $style .= 'height:'.$a['height'].';';
 
-
+                /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                /* Add the javascript */
                 wp_enqueue_script('xs_build_script', plugins_url('js/panel.js', __FILE__));
 
+                /*
+                *  Hardcoded javascript to define the variable 'time' in js,
+                *  4000 is the value when 'time' is empty (as 0)
+                */
                 if(!empty($a['time']))
                         echo '<script>var xs_build_image_slide_time='.json_encode($a['time']).';</script>';
                 else
                         echo '<script>var xs_build_image_slide_time=4000;</script>';
 
+                /* Print the container and it's style, with content (Image list) */
                 echo '<div class="xs_build_slideshow" style="'.$style.'">'.$c.'</div>';
 
                 return;
@@ -70,9 +110,21 @@ endif;
 if(!function_exists('xsb_carousel')) :
 
         add_shortcode( 'xsb_carousel', 'xsb_carousel');
-
+        /*
+        *  void : xsb_carousel : array, string
+        *  This method is used to create the shortcode of carousel
+        *  where 'items' value elements are show on the same line with arrows to show hidden element
+        *  $attr are the attributes of this shortcode
+        *  $c is the html content of this shortcode default value is null
+        */
         function xsb_carousel($attr, $c = null)
         {
+                /*
+                *  Extract the attributes from the array $attr with the following structure:
+                *  'height' is height property of all images default value is 0
+                *  'width' is width property of all images default value is 0
+                *  'items' is the number of image or element to show, default value is 0
+                */
                 $a = shortcode_atts(
                         [
                                 'height' => 0,
@@ -82,29 +134,44 @@ if(!function_exists('xsb_carousel')) :
                         $attr
                 );
 
+                /* Return if content is null (so there are not elements to show) */
                 if($c == null) return;
 
+                /* Hardcoded style in html */
                 $style = '';
 
+                 /* Get the width property if it's not empty and append in $style */
                 if(!empty($a['width']))
                         $style .= 'max-width:'.$a['width'].';';
+                /* Get the height property if it's not empty and append in $style */
                 if(!empty($a['height']))
                         $style .= 'max-height:'.$a['height'].';';
 
+                /*
+                *  Hardcoded javascript to define the variable 'items' in js,
+                *  5 is the value when 'items' is empty (as 0)
+                */
                 if(!empty($a['items']))
                         echo '<script>var xs_build_carousel_range='.json_encode($a['items']).';</script>';
                 else
                         echo '<script>var xs_build_carousel_range=5;</script>';
 
+                /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                /* Add the specific javascript file */
                 wp_enqueue_script('xs_build_script', plugins_url('js/carousel.js', __FILE__));
 
+                /* Print container with it's hardcoded style */
                 echo '<div class="xs_build_carousel" style="'.$style.'">';
+                /* Print arrow to back on a previous element */
                 echo '<div class="xs_build_carousel_control" style="float:left;" onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
+                /* Print a container for the content with an effect fade */
                 echo '<div class="xs_build_carousel_content fade">';
                 echo $c;
                 echo '</div>';
+                /* Print arrow to go on a next element */
                 echo '<div class="xs_build_carousel_control" style="float:right;" onclick="xsb_carousel_btn(1);"><i class="fas fa-greater-than"></i></div>';
+                /* Close the container */
                 echo '</div>';
 
                 return;
@@ -115,9 +182,21 @@ endif;
 if(!function_exists('xsb_fa')) :
 
         add_shortcode( 'xsb_fa', 'xsb_fa');
-
+        /*
+        *  void : xsb_fa : array, string
+        *  This method is used to create the shortcode to show fontawesome icons
+        *  $attr are the attributes of this shortcode
+        *  $c is the html content of this shortcode default value is null
+        */
         function xsb_fa($attr, $c = null)
         {
+                /*
+                *  Extract the attributes from the array $attr with the following structure:
+                *  'icon' is the name of fontawesome icon, default value is empty string
+                *  'type' is the type of fontawesome icon, default value is "fas" string
+                *  'style' is an hardcoded style for the icon, default value is empty string
+                *  'class' is a list of css classes to add on icon, default value is empty string
+                */
                 $a = shortcode_atts(
                         [
                                 'icon' => '',
@@ -128,21 +207,28 @@ if(!function_exists('xsb_fa')) :
                         $attr
                 );
 
+                /* Return if 'icon' is empty (so there is not icon to show) */
                 if(empty($a['icon'])) return;
 
+                /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
 
+                /* Print a container for class if it's not empty */
                 if(!empty($a['class']))
                         echo '<span class="'.$a['class'].'">';
 
+                /* Print a container for style if it's not empty */
                 if(!empty($a['style']))
                         echo '<span style="'.$a['style'].'">';
 
+                /* Print the icon with the content */
                 echo '<i class="'.$a['type'].' fa-'.$a['icon'].'">'.$c.'</i>';
 
+                /* Close the style container */
                 if(!empty($a['style']))
                         echo '</span>';
 
+                /* Close the class container */
                 if(!empty($a['class']))
                         echo '</span>';
 
