@@ -1,4 +1,61 @@
 <?php
+if(!function_exists('xsb_two_column_img')) :
+
+        add_shortcode( 'xsb_two_column_img', 'xsb_two_column_img');
+
+        /*
+        *  void : xsb_panel : array, string
+        *  This method is used to create the shortcode of panel
+        *  where an image is set as background of a content html
+        *  $attr are the attributes of this shortcode
+        *  $c is the html content of this shortcode default value is null
+        */
+        function xsb_two_column_img($attr, $c = null)
+        {
+                /* Set html output variable as empty string */
+                $output = '';
+                /*
+                *  Extract the attributes from the array $attr with the following structure:
+                *  'image' is the URL of background image default value is an empty string
+                *  'first_text' is an virtual boolean value, if is > 0 print text on first column
+                */
+                $a = shortcode_atts(
+                        [
+                                'image' => '',
+                                'first_text' => 1
+                        ],
+                        $attr
+                );
+
+                /* Return empty string if image is null (so there are not image to show) */
+                if(empty($a['image'])) return '';
+
+                /* Add it's css style */
+                wp_enqueue_style(
+                        'xsb_two_column_img',
+                        plugins_url('style/xsb_two_column_img.css', __FILE__)
+                );
+
+                /* Create a container for this shortcode */
+                $output .= '<div class="xsb_two_column">';
+
+                if($a['first_text']) {
+                        /* Add in the first column the content and in second the image */
+                        $output .= '<span>'.$c.'</span>';
+                        $output .= '<img src="'.$a['image'].'"/>';
+                } else {
+                        /* Add in the first column the image and in second the content */
+                        $output .= '<img src="'.$a['image'].'"/>';
+                        $output .= '<span>'.$c.'</span>';
+                }
+
+                /* Close the container for this shortcode */
+                $output .= '</div>';
+                /* Return the html output */
+                return $output;
+        }
+
+endif;
 if(!function_exists('xsb_panel')) :
 
         add_shortcode( 'xsb_panel', 'xsb_panel');
