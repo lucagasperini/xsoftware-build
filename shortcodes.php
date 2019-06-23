@@ -12,6 +12,8 @@ if(!function_exists('xsb_panel')) :
         */
         function xsb_panel($attr, $c = null)
         {
+                /* Set html output variable as empty string */
+                $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
                 *  'image' is the URL of background image default value is an empty string
@@ -27,18 +29,19 @@ if(!function_exists('xsb_panel')) :
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
 
                 /* Create a container for this shortcode */
-                echo '<div class="xs_build_panel">';
+                $output .= '<div class="xs_build_panel">';
 
                 /* If image is not empty print it */
                 if(!empty($a['image']))
-                        echo '<img class="xs_build_panel_image" src="'.$a['image'].'">';
+                        $output .= '<img class="xs_build_panel_image" src="'.$a['image'].'">';
 
                 /* Add the content to the panel if is present */
-                echo '<div class="xs_build_panel_content">'.$c.'</div>';
+                $output .= '<div class="xs_build_panel_content">'.$c.'</div>';
 
                 /* Close the container for this shortcode */
-                echo '</div>';
-                return;
+                $output .= '</div>';
+                /* Return the html output */
+                return $output;
         }
 
 endif;
@@ -56,6 +59,8 @@ if(!function_exists('xsb_slideshow')) :
         */
         function xsb_slideshow($attr, $c = null)
         {
+                /* Set html output variable as empty string */
+                $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
                 *  'height' is height property of all images default value is 0
@@ -72,8 +77,8 @@ if(!function_exists('xsb_slideshow')) :
                         $attr
                 );
 
-                /* Return if content is null (so there are not image to show) */
-                if($c == null) return;
+                /* Return empty string if content is null (so there are not image to show) */
+                if($c == null) return '';
 
                 /* Hardcoded style in html */
                 $style = '';
@@ -95,14 +100,16 @@ if(!function_exists('xsb_slideshow')) :
                 *  4000 is the value when 'time' is empty (as 0)
                 */
                 if(!empty($a['time']))
-                        echo '<script>var xs_build_image_slide_time='.json_encode($a['time']).';</script>';
+                        $output .= '<script>var xs_build_image_slide_time='.json_encode($a['time']).
+                                ';</script>';
                 else
-                        echo '<script>var xs_build_image_slide_time=4000;</script>';
+                        $output .= '<script>var xs_build_image_slide_time=4000;</script>';
 
                 /* Print the container and it's style, with content (Image list) */
-                echo '<div class="xs_build_slideshow" style="'.$style.'">'.$c.'</div>';
+                $output .= '<div class="xs_build_slideshow" style="'.$style.'">'.$c.'</div>';
 
-                return;
+                /* Return the html output */
+                return $output;
         }
 
 endif;
@@ -119,6 +126,8 @@ if(!function_exists('xsb_carousel')) :
         */
         function xsb_carousel($attr, $c = null)
         {
+                /* Set html output variable as empty string */
+                $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
                 *  'height' is height property of all images default value is 0
@@ -134,8 +143,8 @@ if(!function_exists('xsb_carousel')) :
                         $attr
                 );
 
-                /* Return if content is null (so there are not elements to show) */
-                if($c == null) return;
+                /* Return empty string if content is null (so there are not elements to show) */
+                if($c == null) return '';
 
                 /* Hardcoded style in html */
                 $style = '';
@@ -152,9 +161,10 @@ if(!function_exists('xsb_carousel')) :
                 *  5 is the value when 'items' is empty (as 0)
                 */
                 if(!empty($a['items']))
-                        echo '<script>var xs_build_carousel_range='.json_encode($a['items']).';</script>';
+                        $output .= '<script>var xs_build_carousel_range='.json_encode($a['items']).
+                        ';</script>';
                 else
-                        echo '<script>var xs_build_carousel_range=5;</script>';
+                        $output .= '<script>var xs_build_carousel_range=5;</script>';
 
                 /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
@@ -162,19 +172,22 @@ if(!function_exists('xsb_carousel')) :
                 wp_enqueue_script('xs_build_script', plugins_url('js/carousel.js', __FILE__));
 
                 /* Print container with it's hardcoded style */
-                echo '<div class="xs_build_carousel" style="'.$style.'">';
+                $output .= '<div class="xs_build_carousel" style="'.$style.'">';
                 /* Print arrow to back on a previous element */
-                echo '<div class="xs_build_carousel_control" style="float:left;" onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
+                $output .= '<div class="xs_build_carousel_control" style="float:left;"
+                        onclick="xsb_carousel_btn(-1);"><i class="fas fa-less-than"></i></div>';
                 /* Print a container for the content with an effect fade */
-                echo '<div class="xs_build_carousel_content fade">';
-                echo $c;
-                echo '</div>';
+                $output .= '<div class="xs_build_carousel_content fade">';
+                $output .= $c;
+                $output .= '</div>';
                 /* Print arrow to go on a next element */
-                echo '<div class="xs_build_carousel_control" style="float:right;" onclick="xsb_carousel_btn(1);"><i class="fas fa-greater-than"></i></div>';
+                $output .= '<div class="xs_build_carousel_control" style="float:right;"
+                        onclick="xsb_carousel_btn(1);"><i class="fas fa-greater-than"></i></div>';
                 /* Close the container */
-                echo '</div>';
+                $output .= '</div>';
 
-                return;
+                /* Return the html output */
+                return $output;
         }
 
 endif;
@@ -190,6 +203,8 @@ if(!function_exists('xsb_fa')) :
         */
         function xsb_fa($attr, $c = null)
         {
+                /* Set html output variable as empty string */
+                $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
                 *  'icon' is the name of fontawesome icon, default value is empty string
@@ -207,32 +222,32 @@ if(!function_exists('xsb_fa')) :
                         $attr
                 );
 
-                /* Return if 'icon' is empty (so there is not icon to show) */
-                if(empty($a['icon'])) return;
+                /* Return empty string if 'icon' is empty (so there is not icon to show) */
+                if(empty($a['icon'])) return '';
 
                 /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
 
                 /* Print a container for class if it's not empty */
                 if(!empty($a['class']))
-                        echo '<span class="'.$a['class'].'">';
+                        $output .= '<span class="'.$a['class'].'">';
 
                 /* Print a container for style if it's not empty */
                 if(!empty($a['style']))
-                        echo '<span style="'.$a['style'].'">';
+                        $output .= '<span style="'.$a['style'].'">';
 
                 /* Print the icon with the content */
-                echo '<i class="'.$a['type'].' fa-'.$a['icon'].'">'.$c.'</i>';
+                $output .= '<i class="'.$a['type'].' fa-'.$a['icon'].'">'.$c.'</i>';
 
                 /* Close the style container */
                 if(!empty($a['style']))
-                        echo '</span>';
+                        $output .= '</span>';
 
                 /* Close the class container */
                 if(!empty($a['class']))
-                        echo '</span>';
-
-                return;
+                        $output .= '</span>';
+                /* Return the html output */
+                return $output;
         }
 
 endif;
