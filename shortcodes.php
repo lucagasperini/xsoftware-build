@@ -33,7 +33,7 @@ if(!function_exists('xsb_two_column_img')) :
                 /* Add it's css style */
                 wp_enqueue_style(
                         'xsb_two_column_img',
-                        plugins_url('style/xsb_two_column_img.css', __FILE__)
+                        plugins_url('style/xsb_two_column_img.min.css', __FILE__)
                 );
 
                 /* Create a container for this shortcode */
@@ -83,7 +83,7 @@ if(!function_exists('xsb_panel')) :
                 );
 
                 /* Add default style */
-                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.min.css', __FILE__));
 
                 /* Create a container for this shortcode */
                 $output .= '<div class="xs_build_panel">';
@@ -148,9 +148,9 @@ if(!function_exists('xsb_slideshow')) :
                         $style .= 'height:'.$a['height'].';';
 
                 /* Add default style */
-                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.min.css', __FILE__));
                 /* Add the javascript */
-                wp_enqueue_script('xs_build_script', plugins_url('js/panel.js', __FILE__));
+                wp_enqueue_script('xs_build_script', plugins_url('js/panel.min.js', __FILE__));
 
                 /*
                 *  Hardcoded javascript to define the variable 'time' in js,
@@ -224,9 +224,9 @@ if(!function_exists('xsb_carousel')) :
                         $output .= '<script>var xs_build_carousel_range=5;</script>';
 
                 /* Add default style */
-                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.min.css', __FILE__));
                 /* Add the specific javascript file */
-                wp_enqueue_script('xs_build_script', plugins_url('js/carousel.js', __FILE__));
+                wp_enqueue_script('xs_build_script', plugins_url('js/carousel.min.js', __FILE__));
 
                 /* Print container with it's hardcoded style */
                 $output .= '<div class="xs_build_carousel" style="'.$style.'">';
@@ -283,7 +283,7 @@ if(!function_exists('xsb_fa')) :
                 if(empty($a['icon'])) return '';
 
                 /* Add default style */
-                wp_enqueue_style('xs_build_style', plugins_url('style/style.css', __FILE__));
+                wp_enqueue_style('xs_build_style', plugins_url('style/style.min.css', __FILE__));
 
                 /* Print a container for class if it's not empty */
                 if(!empty($a['class']))
