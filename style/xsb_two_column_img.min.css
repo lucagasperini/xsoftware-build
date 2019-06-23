@@ -1,1 +1,1 @@
-.xsb_two_column{position:relative;width:100%;display:table}.xsb_two_column>span{display:table-cell;text-align:center;vertical-align:middle;width:50%}
+.xsb_two_column{position:relative;width:100%;display:table}@media screen and (min-width:48em){.xsb_two_column>span{display:table-cell;text-align:center;vertical-align:middle;width:50%}}
