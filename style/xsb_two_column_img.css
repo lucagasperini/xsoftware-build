@@ -3,6 +3,13 @@
         width: 100%;
         display:table;
 }
+
+.xsb_two_column > img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+
 @media screen and (min-width: 48em) {
         .xsb_two_column > span {
                 display:table-cell;
