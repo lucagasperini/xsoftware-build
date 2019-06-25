@@ -22,7 +22,7 @@ if(!function_exists('xsb_two_column_img')) :
                 $a = shortcode_atts(
                         [
                                 'image' => '',
-                                'first_text' => 1
+                                'first_text' => 1,
                         ],
                         $attr
                 );
@@ -35,6 +35,7 @@ if(!function_exists('xsb_two_column_img')) :
                         'xsb_two_column_img',
                         plugins_url('style/xsb_two_column_img.min.css', __FILE__)
                 );
+
 
                 /* Create a container for this shortcode */
                 $output .= '<div class="xsb_two_column">';
@@ -120,8 +121,8 @@ if(!function_exists('xsb_slideshow')) :
                 $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
-                *  'height' is height property of all images default value is 0
-                *  'width' is width property of all images default value is 0
+                *  'height' is pixel height property of all images default value is 0
+                *  'width' is pixel width property of all images default value is 0
                 *  'time' is a delta time in ms (second/1000) calculated by the start of image
                 *  number 1 minus the start of image number 2
                 */
@@ -142,10 +143,10 @@ if(!function_exists('xsb_slideshow')) :
 
                 /* Get the width property if it's not empty and append in $style */
                 if(!empty($a['width']))
-                        $style .= 'width:'.$a['width'].';';
+                        $style .= 'width:'.$a['width'].'px;';
                 /* Get the height property if it's not empty and append in $style */
                 if(!empty($a['height']))
-                        $style .= 'height:'.$a['height'].';';
+                        $style .= 'height:'.$a['height'].'px;';
 
                 /* Add default style */
                 wp_enqueue_style('xs_build_style', plugins_url('style/style.min.css', __FILE__));
@@ -187,8 +188,8 @@ if(!function_exists('xsb_carousel')) :
                 $output = '';
                 /*
                 *  Extract the attributes from the array $attr with the following structure:
-                *  'height' is height property of all images default value is 0
-                *  'width' is width property of all images default value is 0
+                *  'height' is pixel height property of all images default value is 0
+                *  'width' is pixel width property of all images default value is 0
                 *  'items' is the number of image or element to show, default value is 0
                 */
                 $a = shortcode_atts(
@@ -208,10 +209,10 @@ if(!function_exists('xsb_carousel')) :
 
                  /* Get the width property if it's not empty and append in $style */
                 if(!empty($a['width']))
-                        $style .= 'max-width:'.$a['width'].';';
+                        $style .= 'max-width:'.$a['width'].'px;';
                 /* Get the height property if it's not empty and append in $style */
                 if(!empty($a['height']))
-                        $style .= 'max-height:'.$a['height'].';';
+                        $style .= 'max-height:'.$a['height'].'px;';
 
                 /*
                 *  Hardcoded javascript to define the variable 'items' in js,
