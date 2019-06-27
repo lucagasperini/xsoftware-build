@@ -18,11 +18,13 @@ if(!function_exists('xsb_two_column_img')) :
                 *  Extract the attributes from the array $attr with the following structure:
                 *  'image' is the URL of background image default value is an empty string
                 *  'first_text' is an virtual boolean value, if is > 0 print text on first column
+                *  'class' is a list of css classes to add on icon, default value is empty string
                 */
                 $a = shortcode_atts(
                         [
                                 'image' => '',
                                 'first_text' => 1,
+                                'class' => '',
                         ],
                         $attr
                 );
@@ -36,9 +38,10 @@ if(!function_exists('xsb_two_column_img')) :
                         plugins_url('style/xsb_two_column_img.min.css', __FILE__)
                 );
 
+                /* Print a container for class if it's not empty */
 
-                /* Create a container for this shortcode */
-                $output .= '<div class="xsb_two_column">';
+                /* Create a container for this shortcode and add css classes */
+                $output .= '<div class="xsb_two_column '.$a['class'].'">';
 
                 if($a['first_text']) {
                         /* Add in the first column the content and in second the image */
