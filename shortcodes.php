@@ -4,7 +4,7 @@ if(!function_exists('xsb_two_column_img')) :
         add_shortcode( 'xsb_two_column_img', 'xsb_two_column_img');
 
         /*
-        *  void : xsb_panel : array, string
+        *  string : xsb_panel : array, string
         *  This method is used to create the shortcode of panel
         *  where an image is set as background of a content html
         *  $attr are the attributes of this shortcode
@@ -65,7 +65,7 @@ if(!function_exists('xsb_panel')) :
         add_shortcode( 'xsb_panel', 'xsb_panel');
 
         /*
-        *  void : xsb_panel : array, string
+        *  string : xsb_panel : array, string
         *  This method is used to create the shortcode of panel
         *  where an image is set as background of a content html
         *  $attr are the attributes of this shortcode
@@ -112,7 +112,7 @@ if(!function_exists('xsb_slideshow')) :
         add_shortcode( 'xsb_slideshow', 'xsb_slideshow');
 
         /*
-        *  void : xsb_slideshow : array, string
+        *  string : xsb_slideshow : array, string
         *  This method is used to create the shortcode of slideshow
         *  where all images are show with an automatic switch time
         *  $attr are the attributes of this shortcode
@@ -179,7 +179,7 @@ if(!function_exists('xsb_carousel')) :
 
         add_shortcode( 'xsb_carousel', 'xsb_carousel');
         /*
-        *  void : xsb_carousel : array, string
+        *  string : xsb_carousel : array, string
         *  This method is used to create the shortcode of carousel
         *  where 'items' value elements are show on the same line with arrows to show hidden element
         *  $attr are the attributes of this shortcode
@@ -257,7 +257,7 @@ if(!function_exists('xsb_fa')) :
 
         add_shortcode( 'xsb_fa', 'xsb_fa');
         /*
-        *  void : xsb_fa : array, string
+        *  string : xsb_fa : array, string
         *  This method is used to create the shortcode to show fontawesome icons
         *  $attr are the attributes of this shortcode
         *  $c is the html content of this shortcode default value is null
