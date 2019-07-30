@@ -22,15 +22,14 @@ if(!function_exists('xsb_two_column_img')) :
                 */
                 $a = shortcode_atts(
                         [
-                                'image' => '',
-                                'first_text' => 1,
+                                'height' => '300px',
                                 'class' => '',
                         ],
                         $attr
                 );
 
                 /* Return empty string if image is null (so there are not image to show) */
-                if(empty($a['image'])) return '';
+                //if(empty($a['image'])) return '';
 
                 /* Add it's css style */
                 wp_enqueue_style(
@@ -41,20 +40,12 @@ if(!function_exists('xsb_two_column_img')) :
                 /* Print a container for class if it's not empty */
 
                 /* Create a container for this shortcode and add css classes */
-                $output .= '<div class="xsb_two_column '.$a['class'].'">';
+                $output .= '<div class="xsb_two_column '.$a['class'].'" style="height:'.$a['height'].'">';
 
-                if($a['first_text']) {
-                        /* Add in the first column the content and in second the image */
-                        $output .= '<span>'.$c.'</span>';
-                        $output .= '<img src="'.$a['image'].'"/>';
-                } else {
-                        /* Add in the first column the image and in second the content */
-                        $output .= '<img src="'.$a['image'].'"/>';
-                        $output .= '<span>'.$c.'</span>';
-                }
+                $str = str_replace('<figure','</span><figure', $c);
 
-                /* Close the container for this shortcode */
-                $output .= '</div>';
+                $output .= '<span>'.$str.'</div>';
+
                 /* Return the html output */
                 return $output;
         }

@@ -16,8 +16,11 @@
                 flex-direction:column;
                 width:70%;
         }
-        .xsb_two_column > img {
-                width: 30%;
+        .xsb_two_column > figure{
+                height: 100%;
+        }
+        .xsb_two_column > figure > img{
+                height: 100%;
         }
 
 }
