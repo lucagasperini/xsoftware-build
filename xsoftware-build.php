@@ -11,6 +11,7 @@ Text Domain: xsoftware_build
 
 if(!defined("ABSPATH")) die;
 
+if (!class_exists("xs_build_plugin")) :
 /*
 *  XSoftware Build Plugin Class
 *  The following class is used to execute plugin operations
@@ -30,5 +31,7 @@ class xs_build_plugin
 }
 
 $xs_build_plugin = new xs_build_plugin();
+
+endif;
 
 ?>
